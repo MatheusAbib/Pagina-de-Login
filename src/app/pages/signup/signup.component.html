@@ -1,0 +1,51 @@
+<app-default-login-layout
+title="Entre e comece hoje!"
+primaryBtnText="Cadastre-se"
+secondaryBtnText="Entre"
+(submit) ="submit()"
+(navigate) ="navigate()"
+[disablePrimaryBtn]="!signupForm.valid"
+>
+  <form [formGroup]="signupForm">
+    <app-primary-input
+      formControlName="name"
+      inputName="name"
+      type="text"
+      label="Seu Nome"
+      placeholder="Seu Nome"
+    >
+    <img src="/assets/svg/email-icon.svg">
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      label="Email"
+      placeholder="gmail@gmailcom"
+    >
+    <img src="/assets/svg/email-icon.svg">
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="password"
+      inputName="password"
+      type="password"
+      label="Sua Senha"
+      placeholder="*****"
+    >
+    <img src="/assets/svg/password-icon.svg">
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="passwordConfirm"
+      inputName="passwordConfirm"
+      type="password"
+      label="Confirme sua Senha"
+      placeholder="*****"
+    >
+    <img src="/assets/svg/password-icon.svg">
+    </app-primary-input>
+
+  </form>
+</app-default-login-layout>
