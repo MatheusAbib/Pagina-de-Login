@@ -1,17 +1,61 @@
 @import "../../../styles/variables.scss";
 
-form{
+form {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 15px;
   margin-bottom: 34px;
 
-  span{
+  span {
     font-size: 14px;
-    text-decoration:underline;
+    text-decoration: underline;
     color: $secondary-color;
     text-align: end;
     justify-content: end;
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+}
+
+.input-container app-primary-input {
+  margin-bottom: 0;
+}
+
+.error-container {
+  margin-top: 4px;
+  min-height: 20px;
+  padding-left: 8px;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 12px;
+  margin: 2px 0;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.password-mismatch {
+  font-size: 14px;
+  text-align: center;
+  margin: 12px 0;
+  padding: 10px;
+  background-color: rgba(244, 67, 54, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid #f44336;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

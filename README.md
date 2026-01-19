@@ -22,5 +22,3 @@ A aplicação permite que usuários façam **LOGIN** e **CADASTRO**, com valida�
   - **BANCO DE DADOS** (exemplo: H2, MySQL, etc)  
 
 ---
-
-
