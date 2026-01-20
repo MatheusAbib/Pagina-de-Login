@@ -1,24 +1,44 @@
-# **PÁGINA DE LOGIN — PROJETO ANGULART**
+# 🔐 Página de Login — Projeto Angular + Spring Boot
 
-## 🚀 **SOBRE O PROJETO**
-
-Este é um sistema simples de autenticação com frontend em **ANGULAR** e backend em **SPRING BOOT**.  
-A aplicação permite que usuários façam **LOGIN** e **CADASTRO**, com validação no frontend, autenticação **JWT** no backend e gerenciamento do token no cliente.
+Um sistema de autenticação completo com **frontend em Angular** e **backend em Spring Boot**, permitindo **login** e **cadastro** de usuários, com validação no frontend, autenticação **JWT** no backend e gerenciamento de tokens no cliente.
 
 ---
 
-## 🛠 **TECNOLOGIAS UTILIZADAS**
+## 🛠 Tecnologias utilizadas
 
-- **FRONTEND:**  
-  - **ANGULAR** (Standalone Components, Reactive Forms)  
-  - **TYPESCRIPT**  
-  - **SCSS**  
-  - **NGX-TOASTR** (para notificações toast)  
-  - **ANGULAR ROUTER** (para navegação)  
+### Frontend
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular" width="40" height="40" /> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="40" height="40" /> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" alt="SCSS" width="40" height="40" /> 
+</div>
 
-- **BACKEND:**  
-  - **JAVA SPRING BOOT** (API REST)  
-  - **SPRING SECURITY** (com JWT)  
-  - **BANCO DE DADOS** (exemplo: H2, MySQL, etc)  
+- **Angular**: Standalone Components, Reactive Forms  
+- **TypeScript**: Superset do JavaScript com tipagem estática  
+- **SCSS**: Estilização modular e responsiva  
+- **NGX-Toastr**: Notificações toast  
+- **Angular Router**: Navegação entre páginas  
+
+### Backend
+<div>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" width="40" height="40" /> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" alt="Spring Boot" width="40" height="40" /> 
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" width="40" height="40" />
+</div>
+
+- **Java Spring Boot**: API REST  
+- **Spring Security**: Autenticação e autorização com JWT  
+- **Banco de Dados**: H2, MySQL ou outro de sua escolha  
 
 ---
+
+## ✨ Funcionalidades
+
+- Login e cadastro de usuários  
+- Validação de formulários no frontend  
+- Autenticação JWT no backend  
+- Gerenciamento seguro de tokens no cliente  
+- Notificações em tempo real via toast  
+
+---
+
