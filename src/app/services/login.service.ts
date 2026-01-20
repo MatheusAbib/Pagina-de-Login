@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponse } from '../types/login-response.type';
 import { tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  apiUrl: string = "http://localhost:8083/auth"
+  private apiUrl = environment.apiUrl + '/auth';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -19,7 +20,6 @@ export class LoginService {
       })
     )
   }
-
 
   signup(name: string, email: string, password: string){
     return this.httpClient.post<LoginResponse>(this.apiUrl + "/register", { name, email, password }).pipe(

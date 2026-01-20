@@ -2,14 +2,14 @@
 
 .input-wrapper {
   color: $text-color;
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-size: clamp(0.9rem, 2vw, 0.1rem);
   text-align: start;
   width: 100%;
-  margin-bottom: clamp(15px, 3vw, 20px);
+  margin-bottom: clamp(15px, 3vw, 5px);
 
   label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 500;
   }
 
@@ -29,8 +29,8 @@
       flex: 1;
       border: none;
       background-color: $gray-secondary-bg;
-      padding: clamp(12px, 3vw, 14px);
-      font-size: clamp(0.9rem, 2vw, 1rem);
+      padding: clamp(16px, 3vw, 16px);
+      font-size: clamp(0.8rem, 2vw, 0rem);
       color: $text-color;
       outline: none;
       min-width: 0;
@@ -48,7 +48,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px);
+      padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 18px);
       background-color: $primary-color;
       min-width: 50px;
 
