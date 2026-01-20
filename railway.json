@@ -1,0 +1,33 @@
+{
+  "builds": [
+    {
+      "src": "login-auth-api/login-auth-api",
+      "use": "@railway/java"
+    },
+    {
+      "src": ".",
+      "use": "@railway/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "login-auth-api/login-auth-api",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ],
+  "env": {
+    "PORT": "8080",
+    "TOKEN_SECRET": {
+      "generator": "secret"
+    },
+    "ALLOWED_ORIGINS": "https://*.railway.app,http://localhost:4200"
+  }
+}
