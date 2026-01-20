@@ -1,39 +1,114 @@
 @import "../../../styles/variables.scss";
 
-.input-wrapper{
+.input-wrapper {
   color: $text-color;
-  font-size: 16px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   text-align: start;
+  width: 100%;
+  margin-bottom: clamp(15px, 3vw, 20px);
 
-    label{
-      margin-bottom: 10px;
-    }
-
-  .input-content{
-    width: 100%;
-    display: flex;
-
-    input{
-      border: none;
-      background-color: $gray-secondary-bg;
-      padding: 15px 15px;
-      border-radius: 8px 0 0 8px;
-      width: 100%;
-
-    }
-
-  .icon{
-    padding: 12px 20px;
-    background-color: $primary-color;
-    border-radius: 0 8px 8px 0;
-
-
-    img{
-      height: 20px;
-    }
-
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
 
+  .input-content {
+    width: 100%;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+
+    &:focus-within {
+      box-shadow: 0 4px 12px rgba(112, 1, 253, 0.15);
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      background-color: $gray-secondary-bg;
+      padding: clamp(12px, 3vw, 14px);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      color: $text-color;
+      outline: none;
+      min-width: 0;
+
+      &::placeholder {
+        color: lighten($text-color, 30%);
+      }
+
+      &:focus {
+        background-color: darken($gray-secondary-bg, 2%);
+      }
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px);
+      background-color: $primary-color;
+      min-width: 50px;
+
+      img {
+        height: clamp(18px, 3vw, 22px);
+        width: auto;
+        filter: brightness(0) invert(1);
+      }
+    }
   }
 }
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .input-wrapper {
+    margin-bottom: 15px;
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    .input-content {
+      input {
+        padding: 12px;
+        font-size: 0.9rem;
+      }
+
+      .icon {
+        padding: 10px 15px;
+        min-width: 45px;
+
+        img {
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .input-wrapper {
+    label {
+      font-size: 0.85rem;
+    }
+
+    .input-content {
+      input {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+      }
+
+      .icon {
+        padding: 8px 12px;
+        min-width: 40px;
+
+        img {
+          height: 16px;
+        }
+      }
+    }
+  }
+}
