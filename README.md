@@ -28,7 +28,7 @@ Um sistema de autenticação completo com **frontend em Angular** e **backend em
 
 - **Java Spring Boot**: API REST  
 - **Spring Security**: Autenticação e autorização com JWT  
-- **Banco de Dados**: H2, MySQL ou outro de sua escolha  
+- **Banco de Dados**: H2
 
 ---
 
