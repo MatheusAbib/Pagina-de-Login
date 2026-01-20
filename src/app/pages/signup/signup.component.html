@@ -4,10 +4,16 @@
   secondaryBtnText="Entre"
   (submit)="submit()"
   (navigate)="navigate()"
-  [disablePrimaryBtn]="signupForm.invalid"
+  [disablePrimaryBtn]="signupForm.invalid || isLoading"
 >
-  <form [formGroup]="signupForm">
+  <!-- Spinner Overlay -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
 
+  <form [formGroup]="signupForm" [class.blur]="isLoading">
+
+    <!-- Campo Nome -->
     <div class="input-container">
       <app-primary-input
         formControlName="name"
@@ -29,6 +35,7 @@
       </div>
     </div>
 
+    <!-- Campo Email -->
     <div class="input-container">
       <app-primary-input
         formControlName="email"
@@ -50,6 +57,7 @@
       </div>
     </div>
 
+    <!-- Campo Senha -->
     <div class="input-container">
       <app-primary-input
         formControlName="password"
@@ -71,6 +79,7 @@
       </div>
     </div>
 
+    <!-- Campo Confirmar Senha -->
     <div class="input-container">
       <app-primary-input
         formControlName="passwordConfirm"
@@ -92,6 +101,7 @@
       </div>
     </div>
 
+    <!-- Mensagem de erro para senhas não coincidentes -->
     <div *ngIf="signupForm.hasError('passwordMismatch') &&
                 signupForm.get('passwordConfirm')?.touched &&
                 signupForm.get('password')?.touched"
@@ -101,3 +111,5 @@
 
   </form>
 </app-default-login-layout>
+<app-footer />
+

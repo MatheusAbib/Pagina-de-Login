@@ -10,6 +10,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.Arrays;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,17 +35,16 @@ public class SecurityConfig {
 @Bean
 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-        .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Atualize esta linha
-        .csrf(csrf -> csrf.disable()) // CSRF já está desabilitado
+        .cors(Customizer.withDefaults())
+        .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-            .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
-            .requestMatchers("/h2-console/**").permitAll() // ADICIONE ESTA LINHA
+            .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/h2-console/**").permitAll()
             .anyRequest().authenticated()
         )
         .headers(headers -> headers
-            .frameOptions(frame -> frame.sameOrigin()) // Permite frames do mesmo origin (para H2)
+            .frameOptions(frame -> frame.sameOrigin())
         )
         .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
@@ -57,9 +57,9 @@ public CorsConfigurationSource corsConfigurationSource() {
 
     configuration.setAllowedOriginPatterns(Arrays.asList("*"));
 
-    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH", "HEAD"));
     configuration.setAllowedHeaders(Arrays.asList("*"));
-    configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type"));
+    configuration.setExposedHeaders(Arrays.asList("Authorization", "Content-Type", "Content-Disposition"));
     configuration.setAllowCredentials(true);
     configuration.setMaxAge(3600L);
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'; // Adicione esta linha
 import { DefaultLoginLayoutComponent } from '../../components/default-login-layout/default-login-layout.component';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +22,8 @@ interface SignupForm{
     CommonModule,
     DefaultLoginLayoutComponent,
     ReactiveFormsModule,
-    PrimaryInputComponent
+    PrimaryInputComponent,
+    FooterComponent
   ],
   providers: [
     LoginService
@@ -32,6 +34,7 @@ interface SignupForm{
 
 export class SignupComponent {
   signupForm!: FormGroup<SignupForm>;
+  isLoading: boolean = false;
 
   constructor(
     private router: Router,
@@ -56,7 +59,7 @@ export class SignupComponent {
     };
   }
 
-  submit(){
+ submit(){
     if (this.signupForm.invalid) {
       Object.keys(this.signupForm.controls).forEach(key => {
         const control = this.signupForm.get(key);
@@ -71,6 +74,9 @@ export class SignupComponent {
       return;
     }
 
+    // ATIVA O SPINNER
+    this.isLoading = true;
+
     this.loginService.signup(
       this.signupForm.value.name!,
       this.signupForm.value.email!,
@@ -78,9 +84,12 @@ export class SignupComponent {
     ).subscribe({
       next: () => {
         this.toastService.success("Cadastrado com sucesso!");
+
         setTimeout(() => {
           this.router.navigate(["login"]);
+          this.isLoading = false;
         }, 1500);
+
         this.signupForm.reset();
         Object.keys(this.signupForm.controls).forEach(key => {
           const control = this.signupForm.get(key);
@@ -90,6 +99,8 @@ export class SignupComponent {
       },
       error: (error) => {
         console.error('Erro no cadastro:', error);
+        this.isLoading = false;
+
         if (error.status === 400) {
           this.toastService.error("Email já cadastrado!");
         } else {
