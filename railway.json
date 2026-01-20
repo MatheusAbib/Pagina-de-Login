@@ -2,7 +2,7 @@
   "builds": [
     {
       "src": "login-auth-api/login-auth-api",
-      "use": "@railway/java"
+      "use": "dockerfile"
     },
     {
       "src": ".",
