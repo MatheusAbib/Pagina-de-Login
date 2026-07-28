@@ -197,7 +197,6 @@ app-footer {
 @media (max-width: 768px) {
   .profile-header {
     flex-direction: column;
-    gap: 16px;
 
     .header-left {
       flex-wrap: wrap;
@@ -211,6 +210,10 @@ app-footer {
       width: 100%;
       justify-content: center;
     }
+  }
+
+  .profile-container{
+        padding: 10px;
   }
 
   .profile-form {

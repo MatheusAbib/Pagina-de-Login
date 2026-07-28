@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration production",
+    "start": "ng serve",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -17,9 +18,6 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/router": "^18.2.0",
     "bootstrap-icons": "^1.13.1",
-    "bcryptjs": "^3.0.2",
-    "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.14.1",
     "ngx-mask": "^17.1.0",
     "ngx-toastr": "^19.0.0",
     "primeicons": "^8.0.0",

@@ -165,9 +165,6 @@ main {
     .form-section {
       order: 2;
       flex: 0 0 auto;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
       padding: 40px 30px;
 
       img {
@@ -177,7 +174,6 @@ main {
   }
 }
 
-/* Mobile (até 768px) */
 @media (max-width: 768px) {
   main {
     .main-section {
