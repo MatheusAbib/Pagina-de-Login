@@ -1,0 +1,40 @@
+﻿$primary-color: #7001FD;
+$primary-light: #9A4DFF;
+$primary-dark: #5A01CC;
+
+$secondary-color: #1E2772;
+$secondary-light: #3B4A9E;
+$secondary-dark: #151B54;
+
+$text-color: #2D2D2D;
+$text-light: #666666;
+$text-white: #FFFFFF;
+
+$bg-white: #FFFFFF;
+$bg-gray: #F5F6FA;
+$bg-primary-light: #F3EEFF;
+
+$gray-bg: #F5F6FA;
+$gray-secondary-bg: #EEEEEE;
+$gray-divider: #E0E0E0;
+$gray-border: #E8E8E8;
+
+$border-color: #E8E8E8;
+
+$success: #00C853;
+$success-dark: #009624;
+$success-bg: #E8F5E9;
+$error: #D32F2F;
+$error-bg: #FFEBEE;
+$warning: #FF6D00;
+$info: #2979FF;
+
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+$radius-xl: 32px;
+
+$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+$gradient-primary: linear-gradient(135deg, $primary-color, $primary-dark);
+$gradient-success: linear-gradient(135deg, $success, $success-dark);

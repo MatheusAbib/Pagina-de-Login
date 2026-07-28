@@ -1,0 +1,68 @@
+﻿<div class="addresses-container">
+  <header class="addresses-header">
+    <div class="header-left">
+      <button (click)="goBack()" class="btn-back">
+        <span class="bi bi-arrow-left"></span> Voltar
+      </button>
+      <h1>
+        <span class="bi bi-geo-alt"></span>
+        Meus Endereços
+      </h1>
+    </div>
+    <button (click)="openAddAddress()" class="btn-add">
+      <span class="bi bi-plus-lg"></span> Novo Endereço
+    </button>
+  </header>
+
+  <div class="addresses-grid">
+    <div *ngFor="let address of addresses" class="address-card">
+      <div class="address-content">
+        <h3>
+          <span class="bi bi-house-door"></span>
+          {{ address.endereco_entrega }}, {{ address.numero }}
+        </h3>
+        <p><span class="bi bi-geo-alt"></span> {{ address.bairro }}</p>
+        <p><span class="bi bi-buildings"></span> {{ address.cidade }} - {{ address.estado }}</p>
+        <p><span class="bi bi-mailbox"></span> CEP: {{ address.cep }}</p>
+        <p *ngIf="address.tipo_residencia">
+          <span class="bi bi-building"></span> {{ address.tipo_residencia }}
+        </p>
+      </div>
+      <div class="card-actions">
+        <button (click)="openEditAddress(address)" class="btn-edit">
+          <span class="bi bi-pencil"></span> Editar
+        </button>
+        <button (click)="confirmDelete(address.id)" class="btn-delete">
+          <span class="bi bi-trash"></span> Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="addresses.length === 0" class="empty-state">
+    <span class="bi bi-geo-alt"></span>
+    <p>Nenhum endereço cadastrado.</p>
+    <button (click)="openAddAddress()" class="btn-add-empty">
+      <span class="bi bi-plus-lg"></span> Adicionar Endereço
+    </button>
+  </div>
+
+    <app-footer></app-footer>
+
+  <app-address-modal
+    *ngIf="showAddressModal"
+    [address]="editingAddress"
+    (close)="closeAddressModal()"
+    (save)="saveAddress($event)"
+  ></app-address-modal>
+
+  <app-confirm-modal
+    *ngIf="showConfirmModal"
+    title="Excluir Endereço"
+    message="Tem certeza que deseja excluir este endereço?"
+    confirmText="Excluir"
+    cancelText="Cancelar"
+    (confirm)="deleteAddress()"
+    (cancel)="cancelDelete()"
+  ></app-confirm-modal>
+</div>

@@ -1,0 +1,87 @@
+﻿<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <header class="modal-header">
+      <h2>
+        <span class="bi bi-credit-card"></span>
+        {{ card ? 'Editar Cartão' : 'Novo Cartão' }}
+      </h2>
+      <button class="btn-close" (click)="onClose()">
+        <span class="bi bi-x-lg"></span>
+      </button>
+    </header>
+
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="input-container">
+          <label class="input-label">Número do Cartão *</label>
+          <div class="input-wrapper">
+            <span class="icon bi bi-credit-card"></span>
+            <input
+              type="text"
+              formControlName="numero_cartao"
+              placeholder="0000 0000 0000 0000"
+              mask="0000 0000 0000 0000"
+            >
+          </div>
+        </div>
+        <div class="input-container">
+          <label class="input-label">Nome no Cartão *</label>
+          <div class="input-wrapper">
+            <span class="icon bi bi-person"></span>
+            <input type="text" formControlName="nome_cartao" placeholder="Como está no cartão">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="input-container">
+          <label class="input-label">Bandeira *</label>
+          <div class="input-wrapper">
+            <span class="icon bi bi-tag"></span>
+            <select formControlName="bandeira">
+              <option value="">Selecione</option>
+              <option value="Visa">Visa</option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="Amex">Amex</option>
+              <option value="Elo">Elo</option>
+              <option value="Hipercard">Hipercard</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-container">
+          <label class="input-label">Validade *</label>
+          <div class="input-wrapper">
+            <span class="icon bi bi-calendar"></span>
+            <input
+              type="text"
+              formControlName="validade"
+              placeholder="MM/AAAA"
+              mask="00/0000"
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label class="input-label">Código de Segurança *</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-lock"></span>
+          <input
+            type="password"
+            formControlName="codigo_seguranca"
+            placeholder="123"
+            maxlength="4"
+          >
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancel" (click)="onClose()">Cancelar</button>
+        <button type="submit" class="btn-save" [disabled]="cardForm.invalid || isLoading">
+          <span class="bi bi-check-lg"></span>
+          {{ isLoading ? 'Salvando...' : 'Salvar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

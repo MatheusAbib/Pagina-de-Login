@@ -1,0 +1,77 @@
+﻿<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <header class="modal-header">
+      <h2>
+        <span class="bi bi-image"></span>
+        Foto de Perfil
+      </h2>
+      <button class="btn-close" (click)="onClose()">
+        <span class="bi bi-x-lg"></span>
+      </button>
+    </header>
+
+    <div class="photo-container">
+      <div class="photo-preview" #imageContainer>
+        <div *ngIf="!imagePreview" class="empty-state">
+          <span class="bi bi-person-plus"></span>
+          <p>Nenhuma foto selecionada</p>
+          <button class="btn-select" (click)="triggerFileInput()">
+            <span class="bi bi-upload"></span> Selecionar imagem
+          </button>
+        </div>
+
+        <div *ngIf="imagePreview" class="preview-wrapper">
+          <img
+            [src]="imagePreview"
+            alt="Preview"
+            class="preview-image"
+            [style.transform]="'scale(' + zoom + ') translate(' + positionX + 'px, ' + positionY + 'px)'"
+            (mousedown)="startDrag($event)"
+            (mousemove)="onDrag($event)"
+            (mouseup)="stopDrag()"
+            (mouseleave)="stopDrag()"
+          >
+          <div class="drag-hint">
+            <span class="bi bi-arrows-move"></span> Arraste para posicionar
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="imagePreview" class="controls">
+        <div class="controls-left">
+          <button class="btn-control" (click)="triggerFileInput()" title="Trocar imagem">
+            <span class="bi bi-arrow-repeat"></span>
+          </button>
+          <button class="btn-control" (click)="resetZoom()" title="Resetar Zoom">
+            <span class="bi bi-arrow-counterclockwise"></span>
+          </button>
+        </div>
+
+        <div class="controls-center">
+          <button class="btn-control" (click)="zoomOut()" title="Zoom -">
+            <span class="bi bi-dash-lg"></span>
+          </button>
+          <span class="zoom-level">{{ (zoom * 100).toFixed(0) }}%</span>
+          <button class="btn-control" (click)="zoomIn()" title="Zoom +">
+            <span class="bi bi-plus-lg"></span>
+          </button>
+        </div>
+
+        <div class="controls-right">
+          <button class="btn-save" (click)="onSave()" [disabled]="isLoading">
+            <span class="bi bi-check-lg"></span>
+            {{ isLoading ? 'Salvando...' : 'Salvar' }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <input
+      type="file"
+      #fileInput
+      accept="image/*"
+      style="display: none"
+      (change)="onFileSelected($event)"
+    >
+  </div>
+</div>

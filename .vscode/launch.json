@@ -1,0 +1,30 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+<<<<<<< HEAD
+=======
+      "type": "java",
+      "name": "LoginAuthApiApplication",
+      "request": "launch",
+      "mainClass": "com.example.login_auth_api.LoginAuthApiApplication",
+      "projectName": "login-auth-api"
+    },
+    {
+>>>>>>> 5a4c5cc8be650cfb27f411796f4eb58c7049f49e
+      "name": "ng serve",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
+    }
+  ]
+}

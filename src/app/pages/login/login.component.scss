@@ -1,0 +1,147 @@
+﻿@import "../../../styles/variables.scss";
+
+.login-form {
+  width: 100%;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  width: 100%;
+
+  .forgot-password {
+    font-size: 14px;
+    color: $primary-color;
+    cursor: pointer;
+    transition: $transition;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-dark;
+      text-decoration: underline;
+    }
+  }
+}
+
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid $primary-color;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+form.blur {
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.input-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 6px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: $gray-bg;
+  border: 2px solid $gray-border;
+  border-radius: $radius-md;
+  height: 50px;
+  transition: $transition;
+  width: 100%;
+      border-radius: 16px;
+
+  &:focus-within {
+    border-color: $primary-color;
+    background: $bg-white;
+  }
+
+  &.invalid {
+    border-color: $error;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 14px;
+    color: $text-light;
+    font-size: 18px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0 16px 0 46px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: $text-color;
+    outline: none;
+    height: 100%;
+        border-radius: 16px;
+
+    &::placeholder {
+      color: $text-light;
+    }
+
+    &.invalid {
+      color: $error;
+    }
+  }
+}
+
+.error-container {
+  margin-top: 4px;
+  min-height: 20px;
+  width: 100%;
+}
+
+.error-message {
+  color: $error;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .input-wrapper {
+    height: 44px;
+  }
+
+  .input-wrapper input {
+    font-size: 14px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+}

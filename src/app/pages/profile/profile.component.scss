@@ -1,0 +1,224 @@
+﻿@import "../../../styles/variables.scss";
+
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: $bg-white;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+  margin-bottom: 32px;
+  flex-shrink: 0;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: $bg-white;
+      border: 2px solid $gray-border;
+      border-radius: $radius-md;
+      cursor: pointer;
+      font-weight: 500;
+      transition: $transition;
+
+      .bi {
+        font-size: 18px;
+      }
+
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: $secondary-color;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .bi {
+        color: $primary-color;
+        font-size: 32px;
+      }
+    }
+  }
+
+  .btn-change-password {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: $bg-white;
+    border: 2px solid $secondary-color;
+    border-radius: $radius-md;
+    font-weight: 600;
+    color: $secondary-color;
+    cursor: pointer;
+    transition: $transition;
+
+    .bi {
+      font-size: 20px;
+    }
+
+    &:hover {
+      background: $secondary-color;
+      color: $text-white;
+    }
+  }
+}
+
+.profile-form {
+  background: $bg-white;
+  padding: 32px;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 6px;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background: $gray-bg;
+    border: 2px solid $gray-border;
+    border-radius: $radius-md;
+    height: 50px;
+    transition: $transition;
+
+    &:focus-within {
+      border-color: $primary-color;
+      background: $bg-white;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      color: $text-light;
+      font-size: 18px;
+    }
+
+    input,
+    select {
+      flex: 1;
+      padding: 0 16px 0 0;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      color: $text-color;
+      outline: none;
+      height: 100%;
+
+      &::placeholder {
+        color: $text-light;
+      }
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+    }
+  }
+
+  .btn-save {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px;
+    background: $primary-color;
+    color: $text-white;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+    width: 100%;
+    margin-top: 8px;
+
+    .bi {
+      font-size: 20px;
+    }
+
+    &:hover:not(:disabled) {
+      background: $primary-dark;
+      transform: scale(1.01);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+app-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    gap: 16px;
+
+    .header-left {
+      flex-wrap: wrap;
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+
+    .btn-change-password {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .profile-form {
+    padding: 20px;
+
+    .form-row {
+      flex-direction: column;
+      gap: 16px;
+    }
+  }
+}

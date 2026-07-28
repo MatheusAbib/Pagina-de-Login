@@ -1,0 +1,85 @@
+﻿<div class="profile-container">
+  <header class="profile-header">
+    <div class="header-left">
+      <button (click)="goBack()" class="btn-back">← Voltar</button>
+      <h1>Meu Perfil</h1>
+    </div>
+    <button class="btn-change-password" (click)="openChangePassword()">
+      <span class="icon bi bi-key"></span>
+      Alterar Senha
+    </button>
+  </header>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+    <div class="form-row">
+      <div class="input-container">
+        <label class="input-label">Nome completo</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-person"></span>
+          <input type="text" formControlName="nome" placeholder="Seu nome completo">
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label class="input-label">Email</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-envelope"></span>
+          <input type="email" formControlName="email" placeholder="seu@email.com">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-container">
+        <label class="input-label">Gênero</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-gender-ambiguous"></span>
+          <select formControlName="genero">
+            <option value="">Selecione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label class="input-label">Data de Nascimento</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-calendar"></span>
+          <input type="date" formControlName="data_nascimento">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-container">
+        <label class="input-label">CPF</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-credit-card"></span>
+          <input type="text" formControlName="cpf" placeholder="000.000.000-00">
+        </div>
+      </div>
+
+      <div class="input-container">
+        <label class="input-label">Telefone</label>
+        <div class="input-wrapper">
+          <span class="icon bi bi-telephone"></span>
+          <input type="text" formControlName="telefone" placeholder="(11) 99999-9999">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-save" [disabled]="isLoading">
+      {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
+    </button>
+  </form>
+
+  <app-footer></app-footer>
+
+  <app-change-password-modal
+    *ngIf="showChangePassword"
+    (close)="closeChangePassword()"
+    (passwordChanged)="onPasswordChanged()"
+  ></app-change-password-modal>
+</div>

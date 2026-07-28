@@ -1,0 +1,162 @@
+﻿<app-default-login-layout
+  title="Crie sua conta"
+  primaryBtnText="Cadastrar"
+  secondaryBtnText="Já tenho conta"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="signupForm.invalid || isLoading"
+>
+
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <form [formGroup]="signupForm" [class.blur]="isLoading" (keydown.enter)="submit()">
+
+    <div class="input-container">
+      <label class="input-label">Nome completo</label>
+      <div class="input-wrapper" [class.invalid]="signupForm.get('nome')?.invalid && signupForm.get('nome')?.touched">
+        <span class="bi bi-person input-icon"></span>
+        <input
+          type="text"
+          formControlName="nome"
+          placeholder="Digite seu nome completo"
+          [class.invalid]="signupForm.get('nome')?.invalid && signupForm.get('nome')?.touched"
+        >
+      </div>
+      <div class="error-container" *ngIf="signupForm.get('nome')?.invalid && signupForm.get('nome')?.touched">
+        <div *ngIf="signupForm.get('nome')?.hasError('required')" class="error-message">Nome é obrigatório</div>
+        <div *ngIf="signupForm.get('nome')?.hasError('minlength')" class="error-message">Nome deve ter pelo menos 3 caracteres</div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label class="input-label">Email</label>
+      <div class="input-wrapper" [class.invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+        <span class="bi bi-envelope input-icon"></span>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+          [class.invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
+        >
+      </div>
+      <div class="error-container" *ngIf="signupForm.get('email')?.invalid && signupForm.get('email')?.touched">
+        <div *ngIf="signupForm.get('email')?.hasError('required')" class="error-message">Email é obrigatório</div>
+        <div *ngIf="signupForm.get('email')?.hasError('email')" class="error-message">Email inválido</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">Gênero</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('genero')?.invalid && signupForm.get('genero')?.touched">
+          <span class="bi bi-gender-ambiguous input-icon"></span>
+          <select formControlName="genero" [class.invalid]="signupForm.get('genero')?.invalid && signupForm.get('genero')?.touched">
+            <option value="" disabled selected>Selecione</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
+            <option value="Outro">Outro</option>
+            <option value="Prefiro não informar">Prefiro não informar</option>
+          </select>
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('genero')?.invalid && signupForm.get('genero')?.touched">
+          <div *ngIf="signupForm.get('genero')?.hasError('required')" class="error-message">Gênero é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">Data de Nascimento</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('data_nascimento')?.invalid && signupForm.get('data_nascimento')?.touched">
+          <span class="bi bi-calendar input-icon"></span>
+          <input
+            type="date"
+            formControlName="data_nascimento"
+            [class.invalid]="signupForm.get('data_nascimento')?.invalid && signupForm.get('data_nascimento')?.touched"
+          >
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('data_nascimento')?.invalid && signupForm.get('data_nascimento')?.touched">
+          <div *ngIf="signupForm.get('data_nascimento')?.hasError('required')" class="error-message">Data de nascimento é obrigatória</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">CPF</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('cpf')?.invalid && signupForm.get('cpf')?.touched">
+          <span class="bi bi-credit-card input-icon"></span>
+          <input
+            type="text"
+            formControlName="cpf"
+            placeholder="000.000.000-00"
+            mask="000.000.000-00"
+            [class.invalid]="signupForm.get('cpf')?.invalid && signupForm.get('cpf')?.touched"
+          >
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('cpf')?.invalid && signupForm.get('cpf')?.touched">
+          <div *ngIf="signupForm.get('cpf')?.hasError('required')" class="error-message">CPF é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">Telefone</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('telefone')?.invalid && signupForm.get('telefone')?.touched">
+          <span class="bi bi-telephone input-icon"></span>
+          <input
+            type="text"
+            formControlName="telefone"
+            placeholder="(11) 99999-9999"
+            mask="(00) 00000-0000"
+            [class.invalid]="signupForm.get('telefone')?.invalid && signupForm.get('telefone')?.touched"
+          >
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('telefone')?.invalid && signupForm.get('telefone')?.touched">
+          <div *ngIf="signupForm.get('telefone')?.hasError('required')" class="error-message">Telefone é obrigatório</div>
+        </div>
+      </div>
+    </div>
+
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">Senha</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('senha')?.invalid && signupForm.get('senha')?.touched">
+          <span class="bi bi-lock input-icon"></span>
+          <input
+            type="password"
+            formControlName="senha"
+            placeholder="********"
+            [class.invalid]="signupForm.get('senha')?.invalid && signupForm.get('senha')?.touched"
+          >
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('senha')?.invalid && signupForm.get('senha')?.touched">
+          <div *ngIf="signupForm.get('senha')?.hasError('required')" class="error-message">Senha é obrigatória</div>
+          <div *ngIf="signupForm.get('senha')?.hasError('minlength')" class="error-message">Mínimo 6 caracteres</div>
+        </div>
+      </div>
+
+      <div class="input-container" style="flex: 1;">
+        <label class="input-label">Confirmar Senha</label>
+        <div class="input-wrapper" [class.invalid]="signupForm.get('senhaConfirm')?.invalid && signupForm.get('senhaConfirm')?.touched">
+          <span class="bi bi-lock input-icon"></span>
+          <input
+            type="password"
+            formControlName="senhaConfirm"
+            placeholder="********"
+            [class.invalid]="signupForm.get('senhaConfirm')?.invalid && signupForm.get('senhaConfirm')?.touched"
+          >
+        </div>
+        <div class="error-container" *ngIf="signupForm.get('senhaConfirm')?.invalid && signupForm.get('senhaConfirm')?.touched">
+          <div *ngIf="signupForm.get('senhaConfirm')?.hasError('required')" class="error-message">Confirmação obrigatória</div>
+          <div *ngIf="signupForm.get('senhaConfirm')?.hasError('minlength')" class="error-message">Mínimo 6 caracteres</div>
+        </div>
+      </div>
+
+    <div *ngIf="signupForm.hasError('passwordMismatch') &&
+                signupForm.get('senhaConfirm')?.touched &&
+                signupForm.get('senha')?.touched"
+         class="error-message password-mismatch">
+      As senhas não coincidem
+    </div>
+
+  </form>
+</app-default-login-layout>

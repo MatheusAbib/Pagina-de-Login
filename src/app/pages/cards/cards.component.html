@@ -1,0 +1,68 @@
+﻿<div class="cards-container">
+  <header class="cards-header">
+    <div class="header-left">
+      <button (click)="goBack()" class="btn-back">
+        <span class="bi bi-arrow-left"></span> Voltar
+      </button>
+      <h1>
+        <span class="bi bi-credit-card"></span>
+        Meus Cartões
+      </h1>
+    </div>
+    <button (click)="openAddCard()" class="btn-add">
+      <span class="bi bi-plus-lg"></span> Novo Cartão
+    </button>
+  </header>
+
+  <div class="cards-grid">
+    <div *ngFor="let card of cards" class="card-item">
+      <div class="card-content">
+        <div class="card-brand">
+          <span class="bi bi-tag"></span> {{ card.bandeira }}
+        </div>
+        <h3>
+          <span class="bi bi-credit-card"></span>
+          {{ card.numero_cartao | cardNumber }}
+        </h3>
+        <p><span class="bi bi-person"></span> {{ card.nome_cartao }}</p>
+        <p><span class="bi bi-calendar"></span> Válido até: {{ card.validade }}</p>
+      </div>
+      <div class="card-actions">
+        <button (click)="openEditCard(card)" class="btn-edit">
+          <span class="bi bi-pencil"></span> Editar
+        </button>
+        <button (click)="confirmDelete(card.id)" class="btn-delete">
+          <span class="bi bi-trash"></span> Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cards.length === 0" class="empty-state">
+    <span class="bi bi-credit-card"></span>
+    <p>Nenhum cartão cadastrado.</p>
+    <button (click)="openAddCard()" class="btn-add-empty">
+      <span class="bi bi-plus-lg"></span> Adicionar Cartão
+    </button>
+  </div>
+
+    <app-footer></app-footer>
+
+
+  <app-card-modal
+    *ngIf="showCardModal"
+    [card]="editingCard"
+    (close)="closeCardModal()"
+    (save)="saveCard($event)"
+  ></app-card-modal>
+
+  <app-confirm-modal
+    *ngIf="showConfirmModal"
+    title="Excluir Cartão"
+    message="Tem certeza que deseja excluir este cartão?"
+    confirmText="Excluir"
+    cancelText="Cancelar"
+    (confirm)="deleteCard()"
+    (cancel)="cancelDelete()"
+  ></app-confirm-modal>
+</div>

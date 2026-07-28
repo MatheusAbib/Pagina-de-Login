@@ -1,0 +1,434 @@
+﻿@import "../../../styles/variables.scss";
+
+.addresses-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.addresses-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  background: $bg-white;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+  margin-bottom: 32px;
+  flex-shrink: 0;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .btn-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: $bg-white;
+      border: 2px solid $gray-border;
+      border-radius: $radius-md;
+      cursor: pointer;
+      font-weight: 500;
+      transition: $transition;
+
+      .bi {
+        font-size: 18px;
+      }
+
+      &:hover {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: $secondary-color;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .bi {
+        color: $primary-color;
+        font-size: 32px;
+      }
+    }
+  }
+
+  .btn-add {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: $success;
+    color: $text-white;
+    border: none;
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-weight: 600;
+    transition: $transition;
+
+    .bi {
+      font-size: 18px;
+    }
+
+    &:hover {
+      background: $success-dark;
+      transform: scale(1.02);
+    }
+  }
+}
+
+.cep-search {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: flex-end;
+
+  .input-container {
+    flex: 1;
+  }
+
+  .btn-cep {
+    padding: 12px 24px;
+    background: $secondary-color;
+    color: $text-white;
+    border: none;
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-weight: 600;
+    height: 50px;
+    transition: $transition;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .bi {
+      font-size: 18px;
+    }
+
+    &:hover {
+      background: $secondary-dark;
+    }
+  }
+}
+
+.form-container {
+  background: $bg-white;
+  padding: 32px;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+  margin-bottom: 32px;
+  flex-shrink: 0;
+
+  h2 {
+    color: $secondary-color;
+    margin-bottom: 24px;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .bi {
+      color: $primary-color;
+    }
+  }
+}
+
+.address-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+  }
+
+  .input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 6px;
+  }
+
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+    background: $gray-bg;
+    border: 2px solid $gray-border;
+    border-radius: $radius-md;
+    height: 50px;
+    transition: $transition;
+
+    &:focus-within {
+      border-color: $primary-color;
+      background: $bg-white;
+    }
+
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      color: $text-light;
+      font-size: 18px;
+    }
+
+    input, select {
+      flex: 1;
+      padding: 0 16px 0 0;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      color: $text-color;
+      outline: none;
+      height: 100%;
+
+      &::placeholder {
+        color: $text-light;
+      }
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  background: $primary-color;
+  color: $text-white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+  width: 100%;
+  margin-top: 8px;
+
+  .bi {
+    font-size: 20px;
+  }
+
+  &:hover:not(:disabled) {
+    background: $primary-dark;
+    transform: scale(1.01);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.addresses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.address-card {
+  background: $bg-white;
+  padding: 24px;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+  transition: $transition;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    border-color: $primary-color;
+    transform: translateY(-4px);
+  }
+
+  .address-content {
+    h3 {
+      color: $secondary-color;
+      margin-bottom: 8px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .bi {
+        color: $primary-color;
+      }
+    }
+
+    p {
+      color: $text-color;
+      margin: 4px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .bi {
+        color: $text-light;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid $gray-border;
+
+    .btn-edit {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      background: $secondary-color;
+      color: $text-white;
+      border: none;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      transition: $transition;
+      font-weight: 500;
+
+      .bi {
+        font-size: 14px;
+      }
+
+      &:hover {
+        background: $secondary-dark;
+      }
+    }
+
+    .btn-delete {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px;
+      background: $error;
+      color: $text-white;
+      border: none;
+      border-radius: $radius-sm;
+      cursor: pointer;
+      transition: $transition;
+      font-weight: 500;
+
+      .bi {
+        font-size: 14px;
+      }
+
+      &:hover {
+        background: darken($error, 10%);
+      }
+    }
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  background: $bg-white;
+  border-radius: $radius-lg;
+  border: 2px solid $gray-border;
+
+  .bi-geo-alt {
+    font-size: 48px;
+    color: $text-light;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 18px;
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+
+  .btn-add-empty {
+    padding: 12px 32px;
+    background: $success;
+    color: $text-white;
+    border: none;
+    border-radius: $radius-md;
+    cursor: pointer;
+    font-weight: 600;
+    transition: $transition;
+
+    &:hover {
+      background: $success-dark;
+    }
+  }
+}
+
+app-footer {
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .addresses-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+
+    .header-left {
+      flex-wrap: wrap;
+      justify-content: center;
+
+      h1 {
+        font-size: 22px;
+      }
+    }
+
+    .btn-add {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .address-form .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .cep-search {
+    flex-direction: column;
+
+    .btn-cep {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .addresses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,64 @@
+﻿<app-default-login-layout
+  title="Faça login em sua conta"
+  primaryBtnText="Entre"
+  secondaryBtnText="Cadastre-se"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!loginForm.valid || isLoading"
+>
+
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
+
+  <form [formGroup]="loginForm" [class.blur]="isLoading" (keydown.enter)="submit()" class="login-form">
+
+    <div class="input-container">
+      <label class="input-label">Email</label>
+      <div class="input-wrapper" [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <span class="bi bi-envelope input-icon"></span>
+        <input
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+          [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+        >
+      </div>
+      <div class="error-container" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+        <div *ngIf="loginForm.get('email')?.hasError('required')" class="error-message">Email é obrigatório</div>
+        <div *ngIf="loginForm.get('email')?.hasError('email')" class="error-message">Email inválido</div>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label class="input-label">Senha</label>
+      <div class="input-wrapper" [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <span class="bi bi-lock input-icon"></span>
+        <input
+          type="password"
+          formControlName="password"
+          placeholder="********"
+          [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          (keydown.enter)="submit()"
+        >
+      </div>
+      <div class="error-container" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+        <div *ngIf="loginForm.get('password')?.hasError('required')" class="error-message">Senha é obrigatória</div>
+        <div *ngIf="loginForm.get('password')?.hasError('minlength')" class="error-message">Senha deve ter pelo menos 6 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <span class="forgot-password" (click)="openForgotPassword()">
+        Esqueceu a senha?
+      </span>
+    </div>
+
+  </form>
+
+  <app-forgot-password-modal
+    *ngIf="showForgotPasswordModal"
+    (close)="closeForgotPassword()"
+  ></app-forgot-password-modal>
+
+</app-default-login-layout>
