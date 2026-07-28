@@ -18,7 +18,10 @@ module.exports = async (req, res) => {
             ssl: { rejectUnauthorized: false }
         });
 
-        if (req.method === 'GET') {
+        const urlParts = req.url.split('/');
+        const id = urlParts[urlParts.length - 1];
+
+        if (req.method === 'GET' && !id) {
             const [rows] = await connection.execute(
                 'SELECT * FROM cartao WHERE cliente_id = ?',
                 [decoded.id]
@@ -35,6 +38,25 @@ module.exports = async (req, res) => {
             );
             await connection.end();
             return res.status(201).json({ id: result.insertId });
+        }
+
+        if (req.method === 'PUT' && id) {
+            const { numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade } = req.body;
+            await connection.execute(
+                'UPDATE cartao SET numero_cartao = ?, nome_cartao = ?, bandeira = ?, codigo_seguranca = ?, validade = ? WHERE id = ? AND cliente_id = ?',
+                [numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade, id, decoded.id]
+            );
+            await connection.end();
+            return res.json({ message: 'Cart?o atualizado' });
+        }
+
+        if (req.method === 'DELETE' && id) {
+            await connection.execute(
+                'DELETE FROM cartao WHERE id = ? AND cliente_id = ?',
+                [id, decoded.id]
+            );
+            await connection.end();
+            return res.json({ message: 'Cart?o deletado' });
         }
 
         await connection.end();

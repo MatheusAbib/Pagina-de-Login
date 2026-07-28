@@ -18,7 +18,10 @@ module.exports = async (req, res) => {
             ssl: { rejectUnauthorized: false }
         });
 
-        if (req.method === 'GET') {
+        const urlParts = req.url.split('/');
+        const id = urlParts[urlParts.length - 1];
+
+        if (req.method === 'GET' && !id) {
             const [rows] = await connection.execute(
                 'SELECT * FROM endereco WHERE cliente_id = ?',
                 [decoded.id]
@@ -35,6 +38,25 @@ module.exports = async (req, res) => {
             );
             await connection.end();
             return res.status(201).json({ id: result.insertId });
+        }
+
+        if (req.method === 'PUT' && id) {
+            const { endereco_entrega, numero, bairro, cep, cidade, estado, pais, tipo_residencia, descricao_endereco } = req.body;
+            await connection.execute(
+                'UPDATE endereco SET endereco_entrega = ?, numero = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, pais = ?, tipo_residencia = ?, descricao_endereco = ? WHERE id = ? AND cliente_id = ?',
+                [endereco_entrega, numero, bairro, cep, cidade, estado, pais, tipo_residencia, descricao_endereco, id, decoded.id]
+            );
+            await connection.end();
+            return res.json({ message: 'Endere?o atualizado' });
+        }
+
+        if (req.method === 'DELETE' && id) {
+            await connection.execute(
+                'DELETE FROM endereco WHERE id = ? AND cliente_id = ?',
+                [id, decoded.id]
+            );
+            await connection.end();
+            return res.json({ message: 'Endere?o deletado' });
         }
 
         await connection.end();
