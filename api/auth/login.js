@@ -4,13 +4,13 @@ const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res) => {
     if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'M?todo n?o permitido' });
+        return res.status(405).json({ message: 'Metodo nao permitido' });
     }
 
     const { email, senha } = req.body;
 
     if (!email || !senha) {
-        return res.status(400).json({ message: 'Email e senha s?o obrigat?rios' });
+        return res.status(400).json({ message: 'Email e senha sao obrigatorios' });
     }
 
     const connection = await mysql.createConnection({
@@ -29,14 +29,14 @@ module.exports = async (req, res) => {
         );
 
         if (rows.length === 0) {
-            return res.status(401).json({ message: 'Email ou senha inv?lidos' });
+            return res.status(401).json({ message: 'Email ou senha invalidos' });
         }
 
         const user = rows[0];
         const validPassword = await bcrypt.compare(senha, user.senha);
 
         if (!validPassword) {
-            return res.status(401).json({ message: 'Email ou senha inv?lidos' });
+            return res.status(401).json({ message: 'Email ou senha invalidos' });
         }
 
         const token = jwt.sign(

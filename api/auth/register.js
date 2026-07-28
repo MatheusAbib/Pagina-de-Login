@@ -3,13 +3,13 @@ const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res) => {
     if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'M?todo n?o permitido' });
+        return res.status(405).json({ message: 'Metodo nao permitido' });
     }
 
     const { nome, email, genero, data_nascimento, cpf, telefone, senha } = req.body;
 
     if (!nome || !email || !senha) {
-        return res.status(400).json({ message: 'Nome, email e senha s?o obrigat?rios' });
+        return res.status(400).json({ message: 'Nome, email e senha sao obrigatorios' });
     }
 
     const connection = await mysql.createConnection({
@@ -28,19 +28,17 @@ module.exports = async (req, res) => {
         );
 
         if (existing.length > 0) {
-            return res.status(400).json({ message: 'Email j? cadastrado' });
+            return res.status(400).json({ message: 'Email ja cadastrado' });
         }
 
         const hashedPassword = await bcrypt.hash(senha, 10);
 
         await connection.execute(
-            `INSERT INTO cliente 
-            (nome, email, genero, data_nascimento, cpf, telefone, senha, data_cadastro) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`,
+            'INSERT INTO cliente (nome, email, genero, data_nascimento, cpf, telefone, senha, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())',
             [nome, email, genero, data_nascimento, cpf, telefone, hashedPassword]
         );
 
-        res.status(201).json({ message: 'Usu?rio cadastrado com sucesso!' });
+        res.status(201).json({ message: 'Usuario cadastrado com sucesso!' });
     } catch (error) {
         console.error('Erro no registro:', error);
         res.status(500).json({ message: 'Erro interno do servidor' });
