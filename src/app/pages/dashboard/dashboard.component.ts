@@ -84,7 +84,18 @@ export class DashboardComponent implements OnInit {
         this.toastService.success('Foto atualizada com sucesso!');
         this.closePhotoModal();
         this.isLoading = false;
-        window.location.reload();
+        
+        // Buscar os dados atualizados do usuário
+        this.userService.getProfile().subscribe({
+          next: (userData) => {
+            this.user = userData;
+            this.loginService.updateUser(this.user);
+            window.location.reload();
+          },
+          error: () => {
+            window.location.reload();
+          }
+        });
       },
       error: (error) => {
         this.toastService.error('Erro ao salvar foto!');
