@@ -1,4 +1,4 @@
-<div class="addresses-container">
+﻿<div class="addresses-container">
   <div *ngIf="isLoading" class="spinner-overlay">
     <div class="spinner"></div>
   </div>
@@ -10,11 +10,11 @@
       </button>
       <h1>
         <span class="bi bi-geo-alt"></span>
-        Meus Endere?os
+        Meus Endereços
       </h1>
     </div>
     <button (click)="openAddAddress()" class="btn-add">
-      <span class="bi bi-plus-lg"></span> Novo Endere?o
+      <span class="bi bi-plus-lg"></span> Novo Endereço
     </button>
   </header>
 
@@ -45,9 +45,9 @@
 
   <div *ngIf="addresses.length === 0 && !isLoading" class="empty-state">
     <span class="bi bi-geo-alt"></span>
-    <p>Nenhum endere?o cadastrado.</p>
+    <p>Nenhum endereço cadastrado.</p>
     <button (click)="openAddAddress()" class="btn-add-empty">
-      <span class="bi bi-plus-lg"></span> Adicionar Endere?o
+      <span class="bi bi-plus-lg"></span> Adicionar Endereço
     </button>
   </div>
 
@@ -60,8 +60,8 @@
 
   <app-confirm-modal
     *ngIf="showConfirmModal"
-    title="Excluir Endere?o"
-    message="Tem certeza que deseja excluir este endere?o?"
+    title="Excluir Endereço"
+    message="Tem certeza que deseja excluir este endereço?"
     confirmText="Excluir"
     cancelText="Cancelar"
     (confirm)="deleteAddress()"

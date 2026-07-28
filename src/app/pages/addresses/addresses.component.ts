@@ -40,7 +40,7 @@ export class AddressesComponent implements OnInit {
         this.isLoading = false;
       },
       error: (error) => {
-        this.toastService.error('Erro ao carregar endere?os!');
+        this.toastService.error('Erro ao carregar endereços!');
         this.isLoading = false;
         console.error(error);
       }
@@ -68,26 +68,26 @@ export class AddressesComponent implements OnInit {
     if (this.editingAddress) {
       this.addressService.updateAddress(this.editingAddress.id, data).subscribe({
         next: () => {
-          this.toastService.success('Endere?o atualizado com sucesso!');
+          this.toastService.success('Endereço atualizado com sucesso!');
           this.isLoading = false;
           this.closeAddressModal();
           this.loadAddresses();
         },
         error: (error) => {
-          this.toastService.error('Erro ao atualizar endere?o!');
+          this.toastService.error('Erro ao atualizar endereço!');
           this.isLoading = false;
         }
       });
     } else {
       this.addressService.createAddress(data).subscribe({
         next: () => {
-          this.toastService.success('Endere?o adicionado com sucesso!');
+          this.toastService.success('Endereço adicionado com sucesso!');
           this.isLoading = false;
           this.closeAddressModal();
           this.loadAddresses();
         },
         error: (error) => {
-          this.toastService.error('Erro ao adicionar endere?o!');
+          this.toastService.error('Erro ao adicionar endereço!');
           this.isLoading = false;
         }
       });
@@ -104,14 +104,14 @@ export class AddressesComponent implements OnInit {
       this.isLoading = true;
       this.addressService.deleteAddress(this.deletingId).subscribe({
         next: () => {
-          this.toastService.success('Endere?o exclu?do com sucesso!');
+          this.toastService.success('Endereço excluído com sucesso!');
           this.showConfirmModal = false;
           this.deletingId = null;
           this.isLoading = false;
           this.loadAddresses();
         },
         error: (error) => {
-          this.toastService.error('Erro ao excluir endere?o!');
+          this.toastService.error('Erro ao excluir endereço!');
           this.showConfirmModal = false;
           this.isLoading = false;
         }
