@@ -1,3 +1,6 @@
+const mysql = require('mysql2/promise');
+const jwt = require('jsonwebtoken');
+
 module.exports = async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
@@ -15,8 +18,12 @@ module.exports = async (req, res) => {
             ssl: { rejectUnauthorized: false }
         });
 
-        const urlParts = req.url.split('/');
-        const id = urlParts[urlParts.length - 1];
+        const id = req.query.id;
+
+        if (!id || isNaN(id)) {
+            await connection.end();
+            return res.status(400).json({ message: 'ID invalido' });
+        }
 
         if (req.method === 'PUT') {
             const { numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade } = req.body;
@@ -40,6 +47,7 @@ module.exports = async (req, res) => {
         await connection.end();
         res.status(405).json({ message: 'Metodo nao permitido' });
     } catch (error) {
-        res.status(500).json({ message: 'Erro interno' });
+        console.error('Erro:', error);
+        res.status(500).json({ message: 'Erro interno', error: error.message });
     }
 };
