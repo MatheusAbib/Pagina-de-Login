@@ -1,6 +1,3 @@
-const mysql = require('mysql2/promise');
-const jwt = require('jsonwebtoken');
-
 module.exports = async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
@@ -18,23 +15,26 @@ module.exports = async (req, res) => {
             ssl: { rejectUnauthorized: false }
         });
 
-        if (req.method === 'GET') {
-            const [rows] = await connection.execute(
-                'SELECT * FROM cartao WHERE cliente_id = ?',
-                [decoded.id]
+        const urlParts = req.url.split('/');
+        const id = urlParts[urlParts.length - 1];
+
+        if (req.method === 'PUT') {
+            const { numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade } = req.body;
+            await connection.execute(
+                'UPDATE cartao SET numero_cartao = ?, nome_cartao = ?, bandeira = ?, codigo_seguranca = ?, validade = ? WHERE id = ? AND cliente_id = ?',
+                [numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade, id, decoded.id]
             );
             await connection.end();
-            return res.json(rows);
+            return res.json({ message: 'Cartao atualizado' });
         }
 
-        if (req.method === 'POST') {
-            const { numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade } = req.body;
-            const [result] = await connection.execute(
-                'INSERT INTO cartao (numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade, cliente_id) VALUES (?, ?, ?, ?, ?, ?)',
-                [numero_cartao, nome_cartao, bandeira, codigo_seguranca, validade, decoded.id]
+        if (req.method === 'DELETE') {
+            await connection.execute(
+                'DELETE FROM cartao WHERE id = ? AND cliente_id = ?',
+                [id, decoded.id]
             );
             await connection.end();
-            return res.status(201).json({ id: result.insertId });
+            return res.json({ message: 'Cartao deletado' });
         }
 
         await connection.end();

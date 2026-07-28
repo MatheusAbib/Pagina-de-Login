@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 module.exports = async (req, res) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
-        return res.status(401).json({ message: 'N?o autorizado' });
+        return res.status(401).json({ message: 'Nao autorizado' });
     }
 
     try {
@@ -18,10 +18,7 @@ module.exports = async (req, res) => {
             ssl: { rejectUnauthorized: false }
         });
 
-        const urlParts = req.url.split('/');
-        const id = urlParts[urlParts.length - 1];
-
-        if (req.method === 'GET' && !id) {
+        if (req.method === 'GET') {
             const [rows] = await connection.execute(
                 'SELECT * FROM endereco WHERE cliente_id = ?',
                 [decoded.id]
@@ -40,27 +37,8 @@ module.exports = async (req, res) => {
             return res.status(201).json({ id: result.insertId });
         }
 
-        if (req.method === 'PUT' && id) {
-            const { endereco_entrega, numero, bairro, cep, cidade, estado, pais, tipo_residencia, descricao_endereco } = req.body;
-            await connection.execute(
-                'UPDATE endereco SET endereco_entrega = ?, numero = ?, bairro = ?, cep = ?, cidade = ?, estado = ?, pais = ?, tipo_residencia = ?, descricao_endereco = ? WHERE id = ? AND cliente_id = ?',
-                [endereco_entrega, numero, bairro, cep, cidade, estado, pais, tipo_residencia, descricao_endereco, id, decoded.id]
-            );
-            await connection.end();
-            return res.json({ message: 'Endere?o atualizado' });
-        }
-
-        if (req.method === 'DELETE' && id) {
-            await connection.execute(
-                'DELETE FROM endereco WHERE id = ? AND cliente_id = ?',
-                [id, decoded.id]
-            );
-            await connection.end();
-            return res.json({ message: 'Endere?o deletado' });
-        }
-
         await connection.end();
-        res.status(405).json({ message: 'M?todo n?o permitido' });
+        res.status(405).json({ message: 'Metodo nao permitido' });
     } catch (error) {
         res.status(500).json({ message: 'Erro interno' });
     }
