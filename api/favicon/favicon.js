@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
         const base64Data = logo.replace(/^data:image\/\w+;base64,/, '');
         const buffer = Buffer.from(base64Data, 'base64');
 
-        res.set('Content-Type', 'image/png');
+        res.setHeader('Content-Type', 'image/png');
         res.send(buffer);
     } catch (error) {
         console.error('Erro no favicon:', error);
