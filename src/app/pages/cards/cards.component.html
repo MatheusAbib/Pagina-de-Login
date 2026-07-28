@@ -1,4 +1,8 @@
-﻿<div class="cards-container">
+<div class="cards-container">
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+  </div>
+
   <header class="cards-header">
     <div class="header-left">
       <button (click)="goBack()" class="btn-back">
@@ -6,11 +10,11 @@
       </button>
       <h1>
         <span class="bi bi-credit-card"></span>
-        Meus Cartões
+        Meus Cart?es
       </h1>
     </div>
     <button (click)="openAddCard()" class="btn-add">
-      <span class="bi bi-plus-lg"></span> Novo Cartão
+      <span class="bi bi-plus-lg"></span> Novo Cart?o
     </button>
   </header>
 
@@ -25,7 +29,7 @@
           {{ card.numero_cartao | cardNumber }}
         </h3>
         <p><span class="bi bi-person"></span> {{ card.nome_cartao }}</p>
-        <p><span class="bi bi-calendar"></span> Válido até: {{ card.validade }}</p>
+        <p><span class="bi bi-calendar"></span> V?lido at?: {{ card.validade }}</p>
       </div>
       <div class="card-actions">
         <button (click)="openEditCard(card)" class="btn-edit">
@@ -38,16 +42,13 @@
     </div>
   </div>
 
-  <div *ngIf="cards.length === 0" class="empty-state">
+  <div *ngIf="cards.length === 0 && !isLoading" class="empty-state">
     <span class="bi bi-credit-card"></span>
-    <p>Nenhum cartão cadastrado.</p>
+    <p>Nenhum cart?o cadastrado.</p>
     <button (click)="openAddCard()" class="btn-add-empty">
-      <span class="bi bi-plus-lg"></span> Adicionar Cartão
+      <span class="bi bi-plus-lg"></span> Adicionar Cart?o
     </button>
   </div>
-
-    <app-footer></app-footer>
-
 
   <app-card-modal
     *ngIf="showCardModal"
@@ -58,11 +59,13 @@
 
   <app-confirm-modal
     *ngIf="showConfirmModal"
-    title="Excluir Cartão"
-    message="Tem certeza que deseja excluir este cartão?"
+    title="Excluir Cart?o"
+    message="Tem certeza que deseja excluir este cart?o?"
     confirmText="Excluir"
     cancelText="Cancelar"
     (confirm)="deleteCard()"
     (cancel)="cancelDelete()"
   ></app-confirm-modal>
+
+  <app-footer></app-footer>
 </div>

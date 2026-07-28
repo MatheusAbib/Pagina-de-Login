@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CardService } from '../../services/card.service';
@@ -16,7 +16,6 @@ import { CardNumberPipe } from '../../pipes/card-number.pipe';
   styleUrl: './cards.component.scss'
 })
 export class CardsComponent implements OnInit {
-
   cards: any[] = [];
   isLoading = false;
   editingCard: any = null;
@@ -35,13 +34,15 @@ export class CardsComponent implements OnInit {
   }
 
   loadCards() {
+    this.isLoading = true;
     this.cardService.getCards().subscribe({
       next: (data) => {
         this.cards = data;
-        console.log('Cartões carregados:', this.cards);
+        this.isLoading = false;
       },
       error: (error) => {
-        this.toastService.error('Erro ao carregar cartões!');
+        this.toastService.error('Erro ao carregar cart?es!');
+        this.isLoading = false;
         console.error(error);
       }
     });
@@ -68,26 +69,26 @@ export class CardsComponent implements OnInit {
     if (this.editingCard) {
       this.cardService.updateCard(this.editingCard.id, data).subscribe({
         next: () => {
-          this.toastService.success('Cartão atualizado com sucesso!');
+          this.toastService.success('Cart?o atualizado com sucesso!');
           this.isLoading = false;
           this.closeCardModal();
           this.loadCards();
         },
         error: (error) => {
-          this.toastService.error('Erro ao atualizar cartão!');
+          this.toastService.error('Erro ao atualizar cart?o!');
           this.isLoading = false;
         }
       });
     } else {
       this.cardService.createCard(data).subscribe({
         next: () => {
-          this.toastService.success('Cartão adicionado com sucesso!');
+          this.toastService.success('Cart?o adicionado com sucesso!');
           this.isLoading = false;
           this.closeCardModal();
           this.loadCards();
         },
         error: (error) => {
-          this.toastService.error('Erro ao adicionar cartão!');
+          this.toastService.error('Erro ao adicionar cart?o!');
           this.isLoading = false;
         }
       });
@@ -101,16 +102,19 @@ export class CardsComponent implements OnInit {
 
   deleteCard() {
     if (this.deletingId) {
+      this.isLoading = true;
       this.cardService.deleteCard(this.deletingId).subscribe({
         next: () => {
-          this.toastService.success('Cartão excluído com sucesso!');
+          this.toastService.success('Cart?o exclu?do com sucesso!');
           this.showConfirmModal = false;
           this.deletingId = null;
+          this.isLoading = false;
           this.loadCards();
         },
         error: (error) => {
-          this.toastService.error('Erro ao excluir cartão!');
+          this.toastService.error('Erro ao excluir cart?o!');
           this.showConfirmModal = false;
+          this.isLoading = false;
         }
       });
     }
