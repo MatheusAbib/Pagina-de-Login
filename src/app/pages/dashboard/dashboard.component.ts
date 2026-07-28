@@ -81,11 +81,10 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     this.userService.updateProfilePhoto(photo).subscribe({
       next: (response) => {
-        this.user = response.user;
-        this.loginService.updateUser(this.user);
         this.toastService.success('Foto atualizada com sucesso!');
         this.closePhotoModal();
         this.isLoading = false;
+        window.location.reload();
       },
       error: (error) => {
         this.toastService.error('Erro ao salvar foto!');

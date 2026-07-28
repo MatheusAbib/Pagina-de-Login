@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
@@ -6,7 +6,9 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = '/api';
+  private apiUrl = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/api' 
+    : '/api';
 
   constructor(private http: HttpClient) {}
 
@@ -39,7 +41,9 @@ export class LoginService {
   }
 
   updateUser(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
   }
 
   getToken(): string | null {
@@ -47,8 +51,16 @@ export class LoginService {
   }
 
   getUser(): any | null {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    try {
+      const user = localStorage.getItem('user');
+      if (user && user !== 'undefined' && user !== 'null') {
+        return JSON.parse(user);
+      }
+      return null;
+    } catch (error) {
+      console.error('Erro ao parsear usuário:', error);
+      return null;
+    }
   }
 
   isLoggedIn(): boolean {
