@@ -7,11 +7,21 @@ import { UserService } from '../../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ChangePasswordModalComponent } from '../../components/change-password-modal/change-password-modal.component';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ChangePasswordModalComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ChangePasswordModalComponent,
+    FooterComponent,
+    NgxMaskDirective
+  ],
+  providers: [
+    provideNgxMask()
+  ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

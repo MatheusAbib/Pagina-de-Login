@@ -13,7 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule, ConfirmModalComponent, FooterComponent, PhotoModalComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ConfirmModalComponent,
+    FooterComponent,
+    PhotoModalComponent
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -23,6 +29,7 @@ export class DashboardComponent implements OnInit {
   cards: any[] = [];
   showConfirmModal = false;
   showPhotoModal = false;
+  isLoading = false;
 
   constructor(
     private loginService: LoginService,
@@ -71,15 +78,18 @@ export class DashboardComponent implements OnInit {
   }
 
   savePhoto(photo: string) {
+    this.isLoading = true;
     this.userService.updateProfilePhoto(photo).subscribe({
       next: (response) => {
         this.user = response.user;
         this.loginService.updateUser(this.user);
         this.toastService.success('Foto atualizada com sucesso!');
         this.closePhotoModal();
+        this.isLoading = false;
       },
       error: (error) => {
         this.toastService.error('Erro ao salvar foto!');
+        this.isLoading = false;
         console.error(error);
       }
     });

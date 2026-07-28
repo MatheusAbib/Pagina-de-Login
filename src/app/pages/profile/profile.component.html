@@ -1,11 +1,16 @@
 ﻿<div class="profile-container">
   <header class="profile-header">
     <div class="header-left">
-      <button (click)="goBack()" class="btn-back">← Voltar</button>
-      <h1>Meu Perfil</h1>
+      <button (click)="goBack()" class="btn-back">
+        <span class="bi bi-arrow-left"></span> Voltar
+      </button>
+      <h1>
+        <span class="bi bi-person-gear"></span>
+        Meu Perfil
+      </h1>
     </div>
     <button class="btn-change-password" (click)="openChangePassword()">
-      <span class="icon bi bi-key"></span>
+      <span class="bi bi-key"></span>
       Alterar Senha
     </button>
   </header>
@@ -57,7 +62,12 @@
         <label class="input-label">CPF</label>
         <div class="input-wrapper">
           <span class="icon bi bi-credit-card"></span>
-          <input type="text" formControlName="cpf" placeholder="000.000.000-00">
+          <input 
+            type="text" 
+            formControlName="cpf" 
+            placeholder="000.000.000-00"
+            mask="000.000.000-00"
+          >
         </div>
       </div>
 
@@ -65,21 +75,32 @@
         <label class="input-label">Telefone</label>
         <div class="input-wrapper">
           <span class="icon bi bi-telephone"></span>
-          <input type="text" formControlName="telefone" placeholder="(11) 99999-9999">
+          <input 
+            type="text" 
+            formControlName="telefone" 
+            placeholder="(11) 99999-9999"
+            mask="(00) 00000-0000"
+          >
         </div>
       </div>
     </div>
 
-    <button type="submit" class="btn-save" [disabled]="isLoading">
-      {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
-    </button>
+    <div class="profile-actions">
+      <button type="button" class="btn-change-password" (click)="openChangePassword()">
+        <span class="bi bi-key"></span>
+        Alterar Senha
+      </button>
+      <button type="submit" class="btn-save" [disabled]="isLoading">
+        {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
+      </button>
+    </div>
   </form>
-
-  <app-footer></app-footer>
 
   <app-change-password-modal
     *ngIf="showChangePassword"
     (close)="closeChangePassword()"
     (passwordChanged)="onPasswordChanged()"
   ></app-change-password-modal>
+
+  <app-footer></app-footer>
 </div>

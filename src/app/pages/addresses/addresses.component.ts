@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AddressService } from '../../services/address.service';
@@ -10,7 +10,12 @@ import { FooterComponent } from '../../components/footer/footer.component';
 @Component({
   selector: 'app-addresses',
   standalone: true,
-  imports: [CommonModule, AddressModalComponent, ConfirmModalComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    AddressModalComponent,
+    ConfirmModalComponent,
+    FooterComponent
+  ],
   templateUrl: './addresses.component.html',
   styleUrl: './addresses.component.scss'
 })
