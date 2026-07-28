@@ -17,7 +17,7 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/router": "^18.2.0",
     "bootstrap-icons": "^1.13.1",
-    "ngx-mask": "^18.1.0",
+    "ngx-mask": "^17.1.0",
     "ngx-toastr": "^19.0.0",
     "primeicons": "^8.0.0",
     "rxjs": "~7.8.0",
