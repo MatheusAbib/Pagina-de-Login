@@ -85,15 +85,9 @@
       </div>
     </div>
 
-    <div class="profile-actions">
-      <button type="button" class="btn-change-password" (click)="openChangePassword()">
-        <span class="bi bi-key"></span>
-        Alterar Senha
-      </button>
-      <button type="submit" class="btn-save" [disabled]="isLoading">
-        {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
-      </button>
-    </div>
+    <button type="submit" class="btn-save" [disabled]="isLoading">
+      {{ isLoading ? 'Salvando...' : 'Salvar Alterações' }}
+    </button>
   </form>
 
   <app-change-password-modal
