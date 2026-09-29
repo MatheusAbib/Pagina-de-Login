@@ -2,27 +2,20 @@
 
 Sistema completo de autenticação e gerenciamento de usuários com **frontend em Angular** e **backend em Node.js**, permitindo **login**, **cadastro**, **recuperação de senha**, **CRUD de endereços e cartões**, **foto de perfil** e **logo dinâmica via banco de dados**.
 
+> 🔗 **Acesse o projeto online:** [matheusabib.github.io/Pagina-de-Login](https://pagina-de-login-rho.vercel.app/)
+
 ---
 
 ## 🛠 Tecnologias utilizadas
 
-### Frontend
-
-- **Angular 21**: Standalone Components, Reactive Forms, Lazy Loading
-- **TypeScript**: Tipagem estática e segurança
-- **SCSS**: Estilização modular com variáveis globais
-- **NGX-Toastr**: Notificações toast personalizadas
-- **Bootstrap Icons**: Biblioteca de ícones
-- **Ngx-Mask**: Máscaras para CPF, telefone, cartão e CEP
-- **Angular Router**: Navegação com AuthGuard
-
-### Backend
-
-- **Node.js + Express**: API REST
-- **JWT (JSON Web Token)**: Autenticação e autorização
-- **Sequelize**: ORM para MySQL
-- **MySQL**: Banco de dados relacional
-- **Bcrypt.js**: Criptografia de senhas
+![Angular](https://img.shields.io/badge/Angular_21-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
+![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 
 ---
 
