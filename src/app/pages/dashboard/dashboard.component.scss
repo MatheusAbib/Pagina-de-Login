@@ -148,7 +148,6 @@
       &:hover {
         background: $error;
         color: $text-white;
-        transform: translateY(-2px);
       }
     }
   }
@@ -190,7 +189,6 @@
 
     &:hover {
       border-color: $primary-color;
-      transform: translateY(-2px);
     }
 
     .stat-icon {
@@ -268,7 +266,6 @@
       border-color: $primary-color;
       background: $bg-primary-light;
       color: $primary-color;
-      transform: translateY(-2px);
     }
 
     &.active {
@@ -321,7 +318,6 @@
 
     &:hover {
       border-color: $primary-color;
-      transform: translateY(-6px);
     }
 
     .card-decoration {
@@ -395,7 +391,6 @@
 
         &:hover {
           background: $primary-dark;
-          transform: scale(1.02);
 
           .bi {
             transform: translateX(4px);
@@ -423,7 +418,7 @@ app-footer {
 
 @media (max-width: 768px) {
   .dashboard-container {
-    padding: 16px;
+    padding: 6px;
     min-height: 100vh;
   }
 

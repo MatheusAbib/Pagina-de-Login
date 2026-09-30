@@ -69,7 +69,7 @@ form.blur {
   font-size: 14px;
   font-weight: 600;
   color: $text-color;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .input-wrapper {
@@ -82,7 +82,7 @@ form.blur {
   height: 50px;
   transition: $transition;
   width: 100%;
-      border-radius: 16px;
+      border-radius: 12px;
 
   &:focus-within {
     border-color: $primary-color;
@@ -109,7 +109,7 @@ form.blur {
     color: $text-color;
     outline: none;
     height: 100%;
-        border-radius: 16px;
+        border-radius: 12px;
 
     &::placeholder {
       color: $text-light;
