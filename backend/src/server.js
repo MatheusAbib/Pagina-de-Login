@@ -30,11 +30,11 @@ app.get('/api/health', (req, res) => {
 
 sequelize.authenticate()
     .then(() => {
-        console.log('✅ Conectado ao banco de dados MySQL!');
+        console.log('Conectado ao banco de dados MySQL!');
         app.listen(PORT, () => {
-            console.log(`🚀 Servidor rodando na porta ${PORT}`);
+            console.log(`Servidor rodando na porta ${PORT}`);
         });
     })
     .catch(err => {
-        console.error('❌ Erro ao conectar ao banco:', err);
+        console.error('Erro ao conectar ao banco:', err);
     });
