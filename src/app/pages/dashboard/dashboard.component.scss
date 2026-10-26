@@ -22,16 +22,6 @@
   overflow: hidden;
   flex-shrink: 0;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: $gradient-primary;
-  }
-
   .header-left {
     display: flex;
     align-items: center;

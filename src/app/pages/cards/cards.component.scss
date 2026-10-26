@@ -249,11 +249,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &:hover {
-    border-color: $primary-color;
-    transform: translateY(-4px);
-  }
-
   .card-content {
     .card-brand {
       display: inline-flex;

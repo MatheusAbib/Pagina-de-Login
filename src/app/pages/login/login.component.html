@@ -37,7 +37,7 @@
         <input
           type="password"
           formControlName="password"
-          placeholder="********"
+          placeholder="Digite a sua Senha"
           [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
           (keydown.enter)="submit()"
         >

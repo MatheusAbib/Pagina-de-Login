@@ -285,11 +285,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  &:hover {
-    border-color: $primary-color;
-    transform: translateY(-4px);
-  }
-
   .address-content {
     h3 {
       color: $secondary-color;
