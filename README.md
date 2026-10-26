@@ -2,7 +2,7 @@
 
 Sistema completo de autenticação e gerenciamento de usuários com **frontend em Angular** e **backend em Node.js**, permitindo **login**, **cadastro**, **recuperação de senha**, **CRUD de endereços e cartões**, **foto de perfil** e **logo dinâmica via banco de dados**.
 
-> 🔗 **Acesse o projeto online:** [matheusabib.github.io/Pagina-de-Login](https://pagina-de-login-rho.vercel.app/)
+> 🔗 **Acesse o projeto online:** (https://meupainelcrud.vercel.app)
 
 ---
 
